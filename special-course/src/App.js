@@ -1,57 +1,72 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import Person from './Person/Person';
 
 import './App.css';
 
 const App = () => {
+  const [personState, setPersonState] = useState({
+    persons: [
+      { id:'dasj', name: "Adam", age: 25 },
+      { id:'adfa', name: "Grzes", age: 33 },
+      { id:'asff', name: "Drosofila", age: 18},
+    ]
+  });
+  const [showPersons, setShowPerson] = useState(false)
   
-  const [personList, setPersonList] = useState({
-    person: [
-      { name: "Adam", age: 25 },
-      { name: "Grzes", age: 33 },
-      { name: "Drosofila", age: 18},
-    ]}
-  )
-  const [isChilrdenFlag, setIsChildrenFlag] = useState(true);
-  const [showPersons, setShowPersons] = useState(false);
-
   const handleShowPersons = () => {
-    setShowPersons(showPersons =>!showPersons)   
+    setShowPerson({showPersons: !showPersons})   
   }
 
-  const handleChangePersonDetails = () => {
-    setPersonList({person: [
-      { name: "Adamek", age: 44 },
-      { name: "Grzes", age: 33 },
-      { name: "Drosofila Pikna", age: 20},
-      ]
+  const handleChangePersonDetails = (event, id) => {
+    const personIndex = personState.persons.findIndex(p => {
+      return p.id === id
     });
-    setIsChildrenFlag(isChilrdenFlag => !isChilrdenFlag);
+
+    const person = {...personState.persons[personIndex]};
+    person.name = event.target.value;
+
+    const persons = [...personState.persons];
+    persons[personIndex] = person; 
+    setPersonState({persons: persons})
   }
 
+  const deletePerson = (personIndex) => {
+    const person = [...personState.persons];
+    person.splice(personIndex, 1);
+    setPersonState({persons: person})
+  }
+
+  let persons = null;
+
+  if (showPersons) {
+    persons = (
+      <div>
+
+        <div>{personState.persons.map((person, id) => {
+           return <Person 
+            click={() => deletePerson(id)}
+            key={person.id} 
+            name={person.name} 
+            age={person.age}
+            changed={(event) => {handleChangePersonDetails(event, person.id)}}/> 
+        })}</div>
+      </div>
+    );
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
         <button 
-          className='button' 
+          className='btn-showName'
           onClick={handleShowPersons}> Show Person!
         </button>
-
-        {showPersons ? 
-        <div>
-          <button className='przycisk' onClick={handleChangePersonDetails}>kliknij mnie!</button>
-          <Person name={personList.person[0].name} age={personList.person[0].age} />
-          <Person name={personList.person[1].name} age={personList.person[1].age}> 
-            {isChilrdenFlag ? 'i lubie zeglowac!' : 'lub kocham narty!'} 
-          </Person>
-          <Person name={personList.person[2].name} age={personList.person[2].age} />
-        </div> : 
-        null}
-
+        {persons}
       </header>
     </div>
   );
+ 
 }
 
 export default App;
