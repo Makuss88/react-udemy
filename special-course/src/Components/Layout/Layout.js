@@ -1,0 +1,18 @@
+import React from 'react';
+
+import Aux from '../../hoc/Aux';
+import './Layout.css';
+
+const LayoutComponent = (props) => {
+
+  return (
+    <Aux>
+      <div>Toolbar, SideDraw, Backdrop</div>
+      <main className='Content'>
+        {props.children}
+      </main>
+    </Aux>
+  )
+};
+
+export default LayoutComponent;
