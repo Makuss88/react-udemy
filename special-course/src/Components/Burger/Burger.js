@@ -2,7 +2,7 @@ import React from "react";
 
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-import './Burger.css';
+import classes from './Burger.css';
 
 const Burger = (props) => {
 
@@ -19,10 +19,10 @@ const Burger = (props) => {
     transformedIndegrent = <p>Please start adding indegrent!!</p>
   }  
 
-  console.log(transformedIndegrent)
+  // console.log(transformedIndegrent)
   
   return (
-    <div className="Burger">
+    <div className={classes.Burger}>
       <BurgerIngredient type='bread-top' />
       {transformedIndegrent}
       <BurgerIngredient type='bread-bottom' />
