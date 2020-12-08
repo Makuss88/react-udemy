@@ -4,6 +4,8 @@ import Aux from '../../hoc/Aux';
 
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
+import Modal from '../../Components/UI/Modal/Modal'
+import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
 
 const INGREDIANT_PRICE = {
   salad: 0.5,
@@ -81,6 +83,9 @@ class BurgerBilder extends Component {
 
     return (
       <Aux>
+        <Modal> 
+          <OrderSummary ingredient={this.state.ingredient}/>
+        </Modal>
         <Burger ingredient={this.state.ingredient} />
         <BuildControls 
           addingIngredient={this.addIngredientHandler}
