@@ -1,34 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Aux from "../../../hoc/Aux/Aux";
-import Button from '../../UI/Button/Button'
+import Aux from '../../../hoc/Aux/Aux';
+import Button from '../../UI/Button/Button';
 
-const OrderSummary = (props) => {
+class OrderSummary extends Component {
 
-  const { ingredient, purchaseCancel, purchaseContinue, price } = props;
-  const ingredientSummary = Object.keys(ingredient)
-    .map(igKey => {
-      return (
-        <li key={igKey}>
-          <span style={{ textTransform: 'capitalize' }}>{igKey}: </span> {ingredient[igKey]}
-        </li>
-      );
-    });
+  componentWillUpdate() {
+    console.log('[OrderSummary] WillUpdate');
+  }
 
-  return (
-    <Aux>
-      <h3>Your Order</h3>
-      <p>Burger with ingrediants:</p>
-      <ul>
-        {ingredientSummary}
-      </ul>
-      <p><strong>Total price: {price.toFixed(2)}$</strong></p>
-      <p>Contiune to Checkout?</p>
-      <Button clicked={purchaseCancel} btnType='Danger'>CANCEL</Button>
-      <Button clicked={purchaseContinue} btnType="Success">CONTINUE</Button>
-    </Aux>
-  )
+  render() {
+    const ingredientSummary = Object.keys(this.props.ingredient)
+      .map(igKey => {
+        return (
+          <li key={igKey}>
+            <span style={{ textTransform: 'capitalize' }}>{igKey}</span>: {this.props.ingredient[igKey]}
+          </li>);
+      });
 
+    return (
+      <Aux>
+        <h3>Your Order</h3>
+        <p>A delicious burger with the following ingredient:</p>
+        <ul>
+          {ingredientSummary}
+        </ul>
+        <p><strong>Total Price: {this.props.price.toFixed(2)}$</strong></p>
+        <p>Continue to Checkout?</p>
+        <Button btnType="Danger" clicked={this.props.purchaseCancelled}>CANCEL</Button>
+        <Button btnType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
+      </Aux>
+    );
+  }
 }
 
 export default OrderSummary;
