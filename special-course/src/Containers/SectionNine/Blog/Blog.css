@@ -17,6 +17,7 @@
 }
 
 .Ahref:hover,
-.Ahref:active {
+.Ahref:active,
+.Ahref.active {
   color: orange;
 }
