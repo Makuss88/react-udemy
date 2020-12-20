@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Counter from '../Containers/SectionRedux/Counter/Counter';
+import Counter from './Container/Counter';
 import classes from './App.css';
 
 class App extends Component {
