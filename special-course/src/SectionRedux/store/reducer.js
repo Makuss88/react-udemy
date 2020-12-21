@@ -1,3 +1,5 @@
+//TODO this file can be delete :D
+
 import * as actionTypes from './actions';
 
 const initialState = {
