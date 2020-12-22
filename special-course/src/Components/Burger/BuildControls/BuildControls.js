@@ -2,13 +2,15 @@ import React from 'react';
 
 import BuildControl from './BuildControl/BuildControl';
 
+import * as ingName from '../../../assets/helper/helper';
+
 import classes from './BuildControls.css';
 
 const controls = [
-  { label: 'Salad', type: 'salad' },
-  { label: 'Bacon', type: 'bacon' },
-  { label: 'Cheese', type: 'cheese' },
-  { label: 'Meat', type: 'meat' },
+  { label: 'Meat', type: ingName.MEAT },
+  { label: 'Cheese', type: ingName.CHEESE },
+  { label: 'Salad', type: ingName.SALAD },
+  { label: 'Bacon', type: ingName.BACON },
 ];
 
 const buildControls = (props) => (
