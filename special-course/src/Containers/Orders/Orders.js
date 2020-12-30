@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Order from '../../Components/Order/Order/Order';
+import Order from '../../Components/Order/Order';
 import axios from '../axios-order';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
