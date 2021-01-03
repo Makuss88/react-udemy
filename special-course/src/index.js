@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import resultReducer from './SectionRedux/store/reducers/result';
 import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 
 import './index.css';
 
@@ -24,6 +25,7 @@ import registerServiceWorker from './reportWebVitals';
 const rootReducer = combineReducers({
   burgerBuilder: burgerBuilderReducer,
   order: orderReducer,
+  auth: authReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
