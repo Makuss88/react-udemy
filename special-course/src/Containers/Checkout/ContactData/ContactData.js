@@ -109,9 +109,11 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderData: formData
+      orderData: formData,
+      userId: this.props.userId,
     }
-    this.props.onOrderBurger(order);
+
+    this.props.onOrderBurger(order, this.props.token);
   }
 
   checkValidity(value, rules) {
@@ -143,7 +145,7 @@ class ContactData extends Component {
     }
 
     return isValid;
-  }
+  };
 
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedOrderForm = {
@@ -160,9 +162,9 @@ class ContactData extends Component {
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
-    }
+    };
     this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
-  }
+  };
 
   render() {
     const formElementsArray = [];
@@ -171,7 +173,7 @@ class ContactData extends Component {
         id: key,
         config: this.state.orderForm[key]
       });
-    }
+    };
     let form = (
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
@@ -184,33 +186,35 @@ class ContactData extends Component {
             touched={formElement.config.touched}
             shouldValidate={formElement.config.validation}
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-        ))}
+        ))};
         <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
       </form>
     );
     if (this.props.loading) {
       form = <Spinner />;
-    }
+    };
     return (
       <div className={classes.ContactData}>
         <h4>Enter your Contact Data</h4>
         {form}
       </div>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    loading: state.order.loading
-  }
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
 
