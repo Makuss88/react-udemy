@@ -10,7 +10,7 @@ class NewPost extends Component {
         author: 'Max'
     }
 
-    componentDidMount () {
+    UNSAFE_componentDidMount () {
         console.log(this.props);
     }
 

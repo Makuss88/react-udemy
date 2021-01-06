@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import axios from '../axios-order';
+
 import Aux from '../../hoc/Aux/Aux';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 import Burger from '../../Components/Burger/Burger';
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
 import Modal from '../../Components/UI/Modal/Modal';
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../Components/UI/Spinner/Spinner';
-
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../axios-order';
 
 import * as actions from '../../store/actions/index';
 

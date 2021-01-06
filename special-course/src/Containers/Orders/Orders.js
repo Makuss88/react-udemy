@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import axios from '../axios-order';
+
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+
+import * as actions from '../../store/actions/index';
 
 import Order from '../../Components/Order/Order';
 import Spinner from '../../Components/UI/Spinner/Spinner';
 
-import * as actions from '../../store/actions/index';
 class Orders extends Component {
   componentDidMount() {
     this.props.onFetchOrders(this.props.token, this.props.userId);
