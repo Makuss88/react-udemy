@@ -157,7 +157,7 @@ class ContactData extends Component {
             touched={formElement.config.touched}
             shouldValidate={formElement.config.validation}
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-        ))};
+        ))}
         <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
       </form>
     );
@@ -169,7 +169,7 @@ class ContactData extends Component {
         <h4>Enter your Contact Data</h4>
         {form}
       </div>
-    );
+    )
   };
 };
 
